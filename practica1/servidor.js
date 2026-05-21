@@ -18,4 +18,4 @@ let usuarios =[
     {nombre: "Jungkook", Edad: 28},
     {nombre: "Hyunjin", Edad: 26}
 ]
-console.table(usuarios);
+console.table(usuarios);        
