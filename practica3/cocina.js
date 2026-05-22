@@ -1,17 +1,17 @@
-// Buscar productos "baratos" (por ejemplo, menores a $50)
+// Buscar productos baratos
 export function buscarProductosBaratos(menu, presupuesto = 50) {
     return menu.filter(producto => producto.precio <= presupuesto);
 }
 
-// Buscar un producto "caro" específico (ej. el primero que supere los $80)
-export function buscarProductoCaro(menu, limite = 80) {
+// Buscar un producto caro
+export function buscarProductoCaro(menu, limite = 100) {
     return menu.find(producto => producto.precio >= limite);
 }
-// Filtrar por categoría: bebidas
+// Filtrar por bebidas
 export function obtenerBebidas(menu) {
     return menu.filter(producto => producto.categoria === "bebidas");
 }
-// Filtrar por categoría: postres
+// Filtrar por postres
 export function obtenerPostres(menu) {
     return menu.filter(producto => producto.categoria === "postres");
 }

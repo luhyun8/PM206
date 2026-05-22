@@ -1,26 +1,22 @@
 export function mostrarMenuDinamico(menu) {
-    console.log("MENÚ DEL DÍA");
-    const menuFormateado = menu.map(producto => `${producto.nombre} - $${producto.precio}`);
+    console.log("💜MAGIC SHOP CAFÉ: MENU💜");
+    const menuFormateado = menu.map(producto => `  ID: ${producto.id} ✨ ${producto.nombre} - $${producto.precio}`);
     menuFormateado.forEach(linea => console.log(linea));
 }
 
-// Filtrar y mostrar solo promociones
 export function mostrarPromociones(menu) {
-    console.log("\nPROMOCIONES DE HOY");
+    console.log("\n📢 PROMOS ARMY DEL DÍA");
     menu.forEach(producto => {
         if (producto.promocion) {
-            console.log(`¡PROMO! ${producto.nombre} tiene un precio especial de $${producto.precio}`);
+            console.log(`🌟 ¡${producto.nombre}! -> ${producto.descripcion} por sólo $${producto.precio}`);
         }
     });
 }
-// Filtrar y mostrar productos disponibles
+
 export function mostrarProductosDisponibles(menu) {
-    console.log("\nPRODUCTOS DISPONIBLES");
+    console.log("\nSTOCK DISPONIBLE EN TIENDA");
     const disponibles = menu.map(producto => {
-        return producto.disponible ? `${producto.nombre} (Disponible)` : null;
+        return producto.disponible ? `✅ ${producto.nombre}` : `❌ ${producto.nombre} (Agotado)`;
     });
-    
-    disponibles.forEach(prod => {
-        if (prod) console.log(prod);
-    });
+    disponibles.forEach(prod => console.log(prod));
 }

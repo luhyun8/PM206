@@ -5,16 +5,14 @@ export function calcularCuentaPedido(pedido, menu) {
 
     // Usamos reduce para acumular el subtotal buscando el precio en el menú
     const subtotal = items.reduce((acumulado, item) => {
-        // Buscamos el producto en el menú usando find
         const productoMenu = menu.find(p => p.id === item.id);
-        
         // Destructuring del precio del producto encontrado
         const { precio } = productoMenu; 
         
         return acumulado + (precio * item.cant);
     }, 0);
 
-    const IVA = subtotal * 0.16; // Suponiendo el 16% de IVA estándar
+    const IVA = subtotal * 0.16; 
     const total = subtotal + IVA;
 
     return {
