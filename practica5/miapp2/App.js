@@ -1,8 +1,8 @@
 //Zona 1 importaciones de componentes y archivos
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image} from 'react-native';
-import {Saludo} from './components/Saludo';
-import {Saludo2} from './components/Saludo2';
+//import {Saludo} from './components/Saludo';
+//import {Saludo2} from './components/Saludo2';
 import {Perfil} from './components/Perfil';
 
 
@@ -10,16 +10,20 @@ import {Perfil} from './components/Perfil';
 export default function App() {
   return (
     <View style={styles.container}>
+      
+      <Perfil nombre="Guadalupe Rivera" 
+      carrera="Ingeniería en Sistemas Computacionales" 
+      materia="Programación Móvil" cuatrimestre="9no"/>
 
-      <Image source={require('./assets/wave.png')}/>
+      <Text>----------------------------------------------------------</Text>
 
-      <Text>-----------------Componente Simple-----------------------</Text>
-      <Text>Hola Mundo RN!</Text>
-      <Saludo/>
+      <Text>----------------------------------------------------------</Text>
 
-      <Text>-----------------Componente Compuesto-----------------------</Text>
-      <Saludo2/>
-      <Perfil/>
+
+      <Perfil nombre="Jeon Jungkook" 
+      carrera="Artes Visuales" 
+      materia="Danza" 
+      cuatrimestre="9no"/>
 
       <StatusBar style="auto" />
     </View>
