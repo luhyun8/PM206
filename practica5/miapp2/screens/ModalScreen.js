@@ -1,26 +1,26 @@
 //Zona 1 importaciones de componentes y archivos
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image} from 'react-native';
-import MenuScreen from './screens/MenuScreen';
 
 //Zona 2 Main - Hogar de los componentes
-export default function App() {
-  return (
+export default function ModalScreen() {
+return (
     <View style={styles.container}>
-      <MenuScreen />
 
-      <StatusBar style="auto" />
+        <Text>Aqui va la practica de Rafael</Text>
+
+    <StatusBar style="auto" />
     </View>
-  );
+);
 }
 
 //Zona 3 Estilos - Personalización de los componentes
 const styles = StyleSheet.create({
-  container: {
+container: {
     flex: 1,
-    backgroundColor: '#b588f8',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-  },
+},
 });
