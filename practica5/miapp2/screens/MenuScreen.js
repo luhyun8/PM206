@@ -7,7 +7,7 @@ import ActivityIndicatorScreen from './ActivityIndicatorScreen';
 import FlatListScreen from './FlatListScreen';
 import ImageBackgroungScreen from './ImageBackgroungScreen';
 import ModalScreen from './ModalScreen';
-import PressableScreen from './PressableScreen';
+import PressableSwitchScreen from './PressableSwitchScreen';
 import SafeAreaScreen from './SafeAreaScreen';
 import TextInputScreen from './TextInputScreen';
 
@@ -29,8 +29,8 @@ export default function MenuScreen() {
             return <ImageBackgroungScreen />;
         case 'modal':
             return <ModalScreen />;
-        case 'pressable':
-            return <PressableScreen />;
+        case 'pressableSwitch':
+            return <PressableSwitchScreen />;
         case 'textInput':
             return <TextInputScreen />;
 
@@ -48,7 +48,7 @@ export default function MenuScreen() {
         <Button onPress={() => setScreen('flatList')} title="FlatList" />
         <Button onPress={() => setScreen('imageBackgroung')} title="ImageBackgroung" />
         <Button onPress={() => setScreen('modal')} title="Modal" />
-        <Button onPress={() => setScreen('pressable')} title="Pressable" />
+        <Button onPress={() => setScreen('pressableSwitch')} title="PressableSwitch" />
         <Button onPress={() => setScreen('textInput')} title="TextInput" />
         <StatusBar style="auto" />
     </View>
@@ -58,11 +58,41 @@ export default function MenuScreen() {
 
 //Zona 3 Estilos - Personalización de los componentes
 const styles = StyleSheet.create({
-container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-},
+    container: {
+        flex: 1,
+        backgroundColor: '#F5F7FA',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 60,
+    },
+    title: {
+        fontSize: 26,
+        fontWeight: 'bold',
+        color: '#1F2937',
+        marginBottom: 24,
+    },
+    scrollContent: {
+        alignItems: 'center',
+        paddingBottom: 40,
+    },
+    button: {
+        backgroundColor: '#3B82F6',
+        paddingVertical: 14,
+        paddingHorizontal: 28,
+        borderRadius: 12,
+        marginVertical: 6,
+        width: 260,
+        alignItems: 'center',
+        // Sombra (iOS)
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
+    },
 });
