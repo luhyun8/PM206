@@ -1,0 +1,25 @@
+//Zona 1 importaciones de componentes y archivos
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Image} from 'react-native';
+import RegistroScreen from './screens/RegistroScreen';
+
+//Zona 2 Main - Hogar de los componentes
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <RegistroScreen />
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+//Zona 3 Estilos - Personalización de los componentes
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#b588f8',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+});
