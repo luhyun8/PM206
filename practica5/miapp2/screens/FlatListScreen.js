@@ -1,14 +1,97 @@
-//Zona 1 importaciones de componentes y archivos
+//zona1: importaciones de componentes y archivos
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button, SectionList } from 'react-native';
+import { useState } from 'react';
 
 //Zona 2 Main - Hogar de los componentes
-export default function FlatListScreen() {
+export default function ListasScreen() {
+
+const [elementos, setElementos] = useState([
+    { id: '1', nombre: 'Elemento A' },
+    { id: '2', nombre: 'Elemento B' },
+    { id: '3', nombre: 'Elemento C' },
+    { id: '4', nombre: 'Elemento D' },
+    { id: '5', nombre: 'Elemento A' },
+    { id: '6', nombre: 'Elemento B' },
+    { id: '7', nombre: 'Elemento C' },
+    { id: '8', nombre: 'Elemento D' },
+    { id: '9', nombre: 'Elemento A' },
+    { id: '10', nombre: 'Elemento B' },
+    { id: '11', nombre: 'Elemento C' },
+    { id: '12', nombre: 'Elemento D' },
+]);
+
+const [secciones, setSecciones] = useState([
+    {
+        tituloCategoria: 'Anime',
+        data: ['Assassination Classroom', 'Dandadan', 'Attack on Titan'],
+    },
+    {
+        tituloCategoria: 'K-pop',
+        data: ['BTS', 'Blackpink', 'Stray Kids']
+    },
+    {
+        tituloCategoria: 'Libros',
+        data: ['Justine o los infortunios de la virtud', 'El Principito', 'Almendra'],
+    },
+    {
+        tituloCategoria: 'Anime',
+        data: ['Death Note', 'Demon Slayer', 'Spy x Family']
+    },
+    {
+        tituloCategoria: 'K-pop',
+        data: ['Twice', 'Seventeen', 'Aespa']
+    },
+    {
+        tituloCategoria: 'Libros',
+        data: ['Don Quijote', 'La Sombra del Viento', 'Fahrenheit 451']
+    },
+]);
+
+const eliminarElemento = (id) => {
+    setElementos(elementos.filter(item => item.id != id));
+};
+
+const renderContenidoSuperior = () => (
+    <View>
+    <Text style={styles.titulo}> Práctica FlatList </Text>
+
+        <FlatList
+        data={elementos}
+        keyExtractor={(item) => item.id}
+        scrollEnabled={false}
+        renderItem={({ item }) => (
+        <View style={styles.itemFlat}>
+            <Text style={styles.texto}>{item.nombre}</Text>
+            <Button title="Eliminar" onPress={() => eliminarElemento(item.id)} />
+        </View>
+        )}
+    />
+
+    <View style={styles.barraDivisora} />
+    <Text style={styles.titulo}> Práctica SectionList </Text>
+    </View>
+);
+
 return (
     <View style={styles.container}>
+    <SectionList
+        sections={secciones}
+        keyExtractor={(item, index) => item + index + Math.random().toString()}
+        ListHeaderComponent={renderContenidoSuperior}
+        renderItem={({ item }) => (
 
-        <Text>Aqui va la practica de Saul</Text>
+        <View style={styles.itemSection}>
+            <Text style={styles.texto}>{item}</Text>
+        </View>
+        )}
+        renderSectionHeader={({ section: { tituloCategoria } }) => (
 
+        <View style={styles.encabezado}>
+            <Text style={styles.textoEncabezado}>{tituloCategoria}</Text>
+        </View>
+        )}
+    />
     <StatusBar style="auto" />
     </View>
 );
@@ -18,9 +101,46 @@ return (
 const styles = StyleSheet.create({
 container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#b588f8',
+    paddingTop: 60,
+    paddingHorizontal: 20,
+},
+titulo: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+},
+itemFlat: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc',
+},
+itemSection: {
+    padding: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#b50000',
+},
+encabezado: {
+    backgroundColor: '#ff0202',
+    padding: 8,
+    marginTop: 15,
+},
+textoEncabezado: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333333',
+},
+texto: {
+    fontSize: 16,
+},
+barraDivisora: {
+    height: 2,
+    backgroundColor: '#444444',
+    marginVertical: 30,
+    borderRadius: 1,
 },
 });
