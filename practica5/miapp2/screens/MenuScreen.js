@@ -1,7 +1,7 @@
 //Zona 1 importaciones de componentes y archivos
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button} from 'react-native';
-import React, {useState} from 'react';
+import { StyleSheet, Text, View, Pressable, ScrollView, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
 import CardsScreen from './CardsScreen';
 import ActivityIndicatorScreen from './ActivityIndicatorScreen';
 import FlatListScreen from './FlatListScreen';
@@ -16,9 +16,20 @@ export default function MenuScreen() {
 
     const [screen, setScreen] = useState('menu');
 
-    switch(screen) {
+    const opciones = [
+        { key: 'card', label: 'Card' },
+        { key: 'safeArea', label: 'SafeAreaView' },
+        { key: 'activityIndicator', label: 'ActivityIndicator' },
+        { key: 'flatList', label: 'FlatList' },
+        { key: 'imageBackgroung', label: 'ImageBackground' },
+        { key: 'modal', label: 'Modal' },
+        { key: 'pressableSwitch', label: 'PressableSwitch' },
+        { key: 'textInput', label: 'TextInput' },
+    ];
+
+    switch (screen) {
         case 'card':
-            return <CardsScreen/>;
+            return <CardsScreen />;
         case 'safeArea':
             return <SafeAreaScreen />;
         case 'activityIndicator':
@@ -36,23 +47,28 @@ export default function MenuScreen() {
 
         case 'menu':
         default:
-        return (
+            return (
+                <SafeAreaView style={styles.container}>
+                    <ScrollView contentContainerStyle={styles.scrollContent}>
+                        <Text style={styles.title}>Menu de Prácticas</Text>
 
-    <View style={styles.container}>
+                        {opciones.map((opcion) => (
+                            <Pressable
+                                key={opcion.key}
+                                onPress={() => setScreen(opcion.key)}
+                                style={({ pressed }) => [
+                                    styles.button,
+                                    pressed && styles.buttonPressed,
+                                ]}
+                            >
+                                <Text style={styles.buttonText}>{opcion.label}</Text>
+                            </Pressable>
+                        ))}
 
-        <Text> Menu de Prácticas </Text>
-
-        <Button onPress={() => setScreen('card')} title="Card" />
-        <Button onPress={() => setScreen('safeArea')} title="SafeAreaView" />
-        <Button onPress={() => setScreen('activityIndicator')} title="ActivityIndicator" />
-        <Button onPress={() => setScreen('flatList')} title="FlatList" />
-        <Button onPress={() => setScreen('imageBackgroung')} title="ImageBackgroung" />
-        <Button onPress={() => setScreen('modal')} title="Modal" />
-        <Button onPress={() => setScreen('pressableSwitch')} title="PressableSwitch" />
-        <Button onPress={() => setScreen('textInput')} title="TextInput" />
-        <StatusBar style="auto" />
-    </View>
-    );
+                        <StatusBar style="auto" />
+                    </ScrollView>
+                </SafeAreaView>
+            );
     }
 }
 
@@ -60,20 +76,19 @@ export default function MenuScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5F7FA',
+        backgroundColor: '#b588f8',
+    },
+    scrollContent: {
+        flexGrow: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 60,
+        paddingVertical: 60,
     },
     title: {
         fontSize: 26,
         fontWeight: 'bold',
         color: '#1F2937',
         marginBottom: 24,
-    },
-    scrollContent: {
-        alignItems: 'center',
-        paddingBottom: 40,
     },
     button: {
         backgroundColor: '#3B82F6',
@@ -83,12 +98,15 @@ const styles = StyleSheet.create({
         marginVertical: 6,
         width: 260,
         alignItems: 'center',
-        // Sombra (iOS)
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.15,
         shadowRadius: 4,
         elevation: 3,
+    },
+    buttonPressed: {
+        backgroundColor: '#2563EB',
+        opacity: 0.85,
     },
     buttonText: {
         color: '#fff',
