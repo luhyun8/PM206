@@ -99,7 +99,6 @@ export default function ModalBottomSheetScreen() {
 }
 
 //Zona 3 Estilos - Personalización de los componentes
-const styles = StyleSheet.create({
 const estilos = StyleSheet.create({
   container: {
     flex: 1,
