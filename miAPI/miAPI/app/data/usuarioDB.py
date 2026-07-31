@@ -10,11 +10,3 @@ class Usuario(Base):
     nombre = Column(String)
     edad = Column(Integer)
     
-# -------------------------------------------------------------------
-# MODELO ORM: Usuario
-# -------------------------------------------------------------------
-# Esta clase representa una tabla dentro de la base de datos.
-#
-# SQLAlchemy usa el concepto de ORM (Object Relational Mapping),
-# que permite representar tablas como clases de Python
-# y filas como objetos.

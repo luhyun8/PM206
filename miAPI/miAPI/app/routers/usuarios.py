@@ -21,6 +21,14 @@ async def leer_usuarios(db: Session = Depends(get_db)):
         "total": len(usuarios),
         "usuarios": usuarios
     }
+
+
+@router.get("/{id}", status_code=status.HTTP_200_OK)
+async def leer_usuario(id: int, db: Session = Depends(get_db)):
+    usuario = db.query(Usuario).filter(Usuario.id == id).first()
+    if not usuario:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+    return usuario
     
 
 @router.post("/", status_code=status.HTTP_201_CREATED)

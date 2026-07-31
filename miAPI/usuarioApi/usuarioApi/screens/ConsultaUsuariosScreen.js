@@ -5,9 +5,10 @@ import {
   FlatList,
   StyleSheet,
   Platform,
+  Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useFocusEffect } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 
 const API_URL =
   Platform.OS === 'android'
@@ -18,6 +19,7 @@ export default function ConsultaUsuariosScreen() {
 
   const [usuarios, setUsuarios] = useState([]);
   const [cargando, setCargando] = useState(false);
+  const router = useRouter();
 
   const obtenerUsuarios = async () => {
     try {
@@ -49,6 +51,18 @@ export default function ConsultaUsuariosScreen() {
       <Text style={styles.info}>
         Edad: {item.edad} años
       </Text>
+
+      <Pressable
+        style={styles.btnDetalles}
+        onPress={() =>
+          router.push({
+            pathname: '/detalle',
+            params: { id: item.id, nombre: item.nombre, edad: item.edad },
+          })
+        }
+      >
+        <Text style={styles.textoDetalles}>Ver detalles →</Text>
+      </Pressable>
 
     </View>
   );
@@ -143,6 +157,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#6B7280',
     marginTop: 40,
+  },
+
+  btnDetalles: {
+    alignSelf: 'flex-end',
+    marginTop: 10,
+  },
+
+  textoDetalles: {
+    color: '#2563EB',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 
 });
