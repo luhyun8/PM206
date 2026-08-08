@@ -11,10 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
-const API_URL =
-  Platform.OS === 'android'
-    ? 'http://192.168.0.214:5000/v1/usuarios/'
-    : 'http://localhost:5000/v1/usuarios/';
+import { fetchApi } from '../constants/config';
 
 const AUTH_HEADER = 'Basic YWRtaW46MTIzNA==';
 
@@ -53,7 +50,7 @@ export default function ActualizarUsuarioScreen() {
 
     try {
       setCargando(true);
-      const respuesta = await fetch(`${API_URL}${params.id}`, {
+      const respuesta = await fetchApi(`/${params.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

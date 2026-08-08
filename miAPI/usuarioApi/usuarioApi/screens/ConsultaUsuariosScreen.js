@@ -10,26 +10,26 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect, useRouter } from 'expo-router';
 
-const API_URL =
-  Platform.OS === 'android'
-    ? 'http://192.168.0.214:5000/v1/usuarios/'
-    : 'http://localhost:5000/v1/usuarios/';
+import { fetchApi } from '../constants/config';
 
 export default function ConsultaUsuariosScreen() {
 
   const [usuarios, setUsuarios] = useState([]);
   const [cargando, setCargando] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
   const router = useRouter();
 
   const obtenerUsuarios = async () => {
     try {
       setCargando(true);
-      const respuesta = await fetch(API_URL);
+      setErrorMsg(null);
+      const respuesta = await fetchApi('/');
       const datos = await respuesta.json();
       console.log("Respuesta de la API:", datos);
       setUsuarios(datos.usuarios || []);
     } catch (error) {
       console.log("Error de la API:", error);
+      setErrorMsg(error.message);
     } finally {
       setCargando(false);
     }
@@ -94,8 +94,6 @@ export default function ConsultaUsuariosScreen() {
 
     </SafeAreaView>
   );
-
-}
 
 const styles = StyleSheet.create({
 
@@ -170,4 +168,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-});
+});}

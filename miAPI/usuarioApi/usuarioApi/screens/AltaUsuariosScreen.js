@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { View, SafeAreaView, Text, TextInput, Pressable, StyleSheet, Alert, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 
-const API_URL =
-  Platform.OS === 'android'
-    ? 'http://192.168.0.214:5000/v1/usuarios/'
-    : 'http://localhost:5000/v1/usuarios/';
+import { fetchApi } from '../constants/config';
 
 export default function AltaUsuariosScreen() {
   const [nombre, setNombre] = useState('');
@@ -40,7 +37,7 @@ export default function AltaUsuariosScreen() {
 
     try {
       setCargando(true);
-      const respuesta = await fetch(API_URL, {
+      const respuesta = await fetchApi('/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +57,7 @@ export default function AltaUsuariosScreen() {
       setEdad('');
     } catch (error) {
       console.log('Error API', error);
-      mostrarMensaje('Error','No fue posible guardar el usuario.');
+      mostrarMensaje('Error de Conexión', error.message || 'No fue posible guardar el usuario.');
     } finally {
       setCargando(false);
     }

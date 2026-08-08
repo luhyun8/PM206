@@ -1,24 +1,28 @@
 {
   "expo": {
-    "name": "repa2",
-    "slug": "repa2",
+    "name": "Usuarios UPQ",
+    "slug": "usuarios-upq",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/splash-icon.png",
+    "icon": "./assets/icon.png",
+    "scheme": "usuariosupq",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#F5F7FA"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.upq.usuariosapi"
     },
     "android": {
+      "package": "com.upq.usuariosapi",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#F5F7FA"
       },
       "edgeToEdgeEnabled": true
     },
@@ -26,7 +30,22 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-router"
-    ]
+      "expo-router",
+      [
+    "expo-build-properties",
+    {
+      "android": {
+        "usesCleartextTraffic": true
+      }
+    }
+  ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "5efab5b5-6a7d-4849-b6a5-674140363179"
+      }
+    },
+    "owner": "luhyun8"
   }
 }
